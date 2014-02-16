@@ -17,6 +17,7 @@
 	<script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.0.7/angular.min.js"></script>
   
   <script src="app.js"></script>
+  <script src="lib/contries.js"></script>
   </head>
 
   <body ng-app="sampleApp">
@@ -24,9 +25,10 @@
     <div class="container">
 		<div class="row">
 		<div class="col-md-3">
-		   <ul class="nav">
-				<li><a href="#/one"> Go To One </a></li>
-				<li><a href="#/two"> Go To Two </a></li>
+		   <ul class="nav" ng-controller="OptCtrl">
+				<li ng-repeat="dat in countries">
+                    <a href="#/map">{{ dat }}</a>
+                </li>
 			</ul>
 		</div>
 		<div class="col-md-9">
