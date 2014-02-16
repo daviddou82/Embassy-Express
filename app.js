@@ -20,8 +20,6 @@ sampleApp.controller('OptCtrl', function($scope){
         var root = data.data;
         for (var i in root){
             dat = root[i].country.eng.name;
-            console.log(dat)
-            
             $('.nav').append(
                 "<li><a href='#/map'=>"+dat+"</a></li>"
             );
