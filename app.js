@@ -19,4 +19,14 @@ sampleApp.controller('OptCtrl', function($scope){
 
 sampleApp.controller('MapCtrl', function($scope) {
 	$scope.message = 'Lets look at a map';
+
+    var mapOptions = {
+        center: new google.maps.LatLng(45.42, -75.69),
+        zoom: 10
+    };
+    $scope.map = new google.maps.Map(
+        document.getElementById("mapcanvas"),
+        mapOptions
+    );
+    
 });

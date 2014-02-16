@@ -1,27 +1,40 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-
-    <title>AngularJS Routing example</title>
+    <meta name="viewport" content="initial-scale=1.0, user-scalable=no" />
+    <title>Embassy Express</title>
 
     <link href="http://netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css" rel="stylesheet">
 
     <style>
 		body {
-		  padding-top: 10px;
+		  padding-top: 0px;
+          padding-left: 10px;
+          padding-right: 10px;
 		  background-color: #F5F5F5;
 		}
+        #mapcanvas {
+            height: 100%;
+        }
+        #banner{
+            background-color: #B8B59C;
+            padding: 5px;
+        }
     </style>
-    
+
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
 	<script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.0.7/angular.min.js"></script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBE6sOGGnawEaggBRaE63QWTRsgCOTIAAs&sensor=true"></script>
   
   <script src="app.js"></script>
   <script src="lib/contries.js"></script>
   </head>
 
   <body ng-app="sampleApp">
-
+    <div id="banner">
+        <h2>Embassy Express</h2> 
+    </div>
+    <br>
     <div class="container">
 		<div class="row">
 		<div class="col-md-3">
@@ -31,8 +44,8 @@
                 </li>
 			</ul>
 		</div>
-		<div class="col-md-9">
-		  	<div ng-view></div>
+		<div style="height:500px" class="col-md-9">
+		  	<div ng-view id="mapcanvas"></div>
 		</div>
 
 		</div>
