@@ -12,8 +12,7 @@
           padding-left: 10px;
           padding-right: 10px;
 		  background-color: #F5F5F5;
-          height: 100%
-    }
+        }
         #mapcanvas {
             height: 100%;
         }
@@ -24,32 +23,35 @@
     </style>
 
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
-	<script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.0.7/angular.min.js"></script>
+     <script src="http://code.angularjs.org/1.2.13/angular.min.js"></script>
+     <script src="http://code.angularjs.org/1.2.13/angular-route.min.js"></script>
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBE6sOGGnawEaggBRaE63QWTRsgCOTIAAs&sensor=true"></script>
   
   <script src="app.js"></script>
   </head>
 
-  <body ng-app="sampleApp">
+  <body ng-app="app">
     <div id="banner">
         <h2>Canadian Embassies</h2> 
     </div>
     <br>
     <div class="container">
 		<div class="row">
-		<div style="height:575px; overflow:auto;" class="col-md-3">
-		   <ul class="nav" ng-controller="OptCtrl">
-			</ul>
-		</div>
-		<div style="height:500px" class="col-md-9">
-		  	<div ng-view id="mapcanvas"></div>
-		</div>
-
-		</div>
-
+		    <div style="height:575px; overflow:auto;" class="col-md-3">
+		        <ul class="nav" ng-controller="OptCtrl">
+			    </ul>
+		    </div>
+		    
+            <div style="height:450px" class="col-md-9">
+		  	    <div ng-view id="mapcanvas">
+                </div>
+		    </div>
+		    
+            <div style="height:125px; border:2px solid;" class="col-md-9">
+		  	    <div ng-controller="MoreInfoCtrl"></div>
+		    </div>
+        </div>
     </div>
-
-    
   </body>
 </html>
 
