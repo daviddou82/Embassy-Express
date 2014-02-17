@@ -8,6 +8,10 @@ app.config(
         templateUrl: 'views/mapview.html',
         controller: 'MapCtrl',
       })
+    .when('/moreinfo/:obj', {
+        templateUrl: 'views/moreinfo.html',
+        controller: 'MoreInfoCtrl'
+    })
       .otherwise({
           redirectTo: '/map'
       });
@@ -70,14 +74,13 @@ app.controller('MapCtrl', function($scope) {
 
 });
 
-app.controller('MoreInfoCtrl', function($scope){
+app.controller('InfoCtrl', function($scope){
 
     $scope.$on("$routeChangeSuccess", function(event, current, previous ){
         param = current.params.obj;
         $.getJSON('lib/data.json', function(data){
             office = data.data[param].offices;
             if (office.length > 0){
-                console.log(office[0]);
                 lat = office[0].lat;
                 lng = office[0].lng;
                 if (lat != "" && lng != ""){
@@ -85,9 +88,48 @@ app.controller('MoreInfoCtrl', function($scope){
                         $scope.country = data.data[param].country.eng.name;
                         $scope.city = office[0].eng.city;
                         $scope.address = office[0].eng.address;
+                        document.getElementById('changeinf').innerHTML = "<a href='#/moreinfo/"+param+"'>More Info...</a>"
                     });
                 }
             }
         });
     });
 });
+
+app.controller('MoreInfoCtrl', function($scope, $routeParams){
+    $scope.msg = "this is more info"
+    param = $routeParams.obj;
+
+    $('.moreinf').append(
+        "<a href='#/map/"+param+"'>Less Info...</a>"
+    );
+
+
+    $.getJSON('lib/data.json', function(data){
+        //console.log(data.data[param]);
+    
+        root = data.data[param].offices[0];
+        
+        $scope.type = root.eng.type;
+        $scope.close = data.data[param].country['offices-help-abroad'].eng['closing-text']; 
+        $scope.open = data.data[param].country['offices-help-abroad'].eng['opening-text'];
+
+        passport = getAttributeByIndex(root, 7);
+        consul = getAttributeByIndex(root, 6);
+        email = root.eng['email-1'];
+        
+        $scope.info = ['Passport Service: '+passport, 'Honarary Consul: '+consul, 'Email: '+email];
+
+    });
+});
+
+function getAttributeByIndex(obj, index){
+    var i = 0;
+    for (var attr in obj){
+        if (index === i){
+            return obj[attr];
+        }
+        i++;
+    }
+    return null;
+}
