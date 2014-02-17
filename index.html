@@ -47,8 +47,11 @@
                 </div>
 		    </div>
 		    
-            <div style="height:125px; border:2px solid;" class="col-md-9">
-		  	    <div ng-controller="MoreInfoCtrl"></div>
+            <div style="height:125px;"  class="col-md-9">
+		  	    <div ng-controller="MoreInfoCtrl">
+                <h4>{{ city }}, {{ country }}</h4>
+                {{ address }}
+                </div>
 		    </div>
         </div>
     </div>

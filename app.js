@@ -71,9 +71,23 @@ app.controller('MapCtrl', function($scope) {
 });
 
 app.controller('MoreInfoCtrl', function($scope){
-    function updateInfo(obj){
-         $.getJSON('lib/data.json', function(data){
-            root = data.data[obj];
-        });       
-    }
+
+    $scope.$on("$routeChangeSuccess", function(event, current, previous ){
+        param = current.params.obj;
+        $.getJSON('lib/data.json', function(data){
+            office = data.data[param].offices;
+            if (office.length > 0){
+                console.log(office[0]);
+                lat = office[0].lat;
+                lng = office[0].lng;
+                if (lat != "" && lng != ""){
+                    $scope.$apply(function(){
+                        $scope.country = data.data[param].country.eng.name;
+                        $scope.city = office[0].eng.city;
+                        $scope.address = office[0].eng.address;
+                    });
+                }
+            }
+        });
+    });
 });
